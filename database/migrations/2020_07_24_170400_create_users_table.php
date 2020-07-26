@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->dateTime('birth_date');
+            $table->dateTime('birth_date')->format('d-m-Y');
             $table->foreignId('group_id')
                 ->constrained('groups')
                 ->onDelete('cascade');

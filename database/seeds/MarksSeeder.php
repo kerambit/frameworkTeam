@@ -11,6 +11,18 @@ class MarksSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $subjects = \App\Subjects::all();
+
+        $users = \App\User::all();
+
+        foreach ($users as $student){
+            foreach ($subjects as $subject){
+                \App\Marks::create([
+                    'subject_id' => $subject->id,
+                    'student_id' => $student->id,
+                    'mark' => rand(3, 5)
+                ]);
+            }
+        }
     }
 }

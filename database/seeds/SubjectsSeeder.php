@@ -11,6 +11,6 @@ class SubjectsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Subjects::class, 9)->create();
     }
 }
