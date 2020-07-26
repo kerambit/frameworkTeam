@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'dateTime', 'group_id', 'email', 'password',
     ];
 
     /**
@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the group for student.
+     */
+    public function group()
+    {
+        return $this->belongsTo('App\Group');
+    }
+
+    /**
+     * Get the mark for student.
+     */
+    public function marks()
+    {
+        return $this->belongsToMany('App\Marks', 'marks', 'student_id', 'subject_id');
+    }
 }
