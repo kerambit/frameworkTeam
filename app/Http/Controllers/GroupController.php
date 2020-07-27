@@ -14,7 +14,11 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::paginate(3);
+
+        $groups->load('students');
+
+        return view('group.index')->with('groups', $groups);
     }
 
     /**
@@ -46,7 +50,9 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        $group->load('students');
+
+        return view('group.show')->with('group', $group);
     }
 
     /**
@@ -57,7 +63,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        return view('group.edit')->with('group', $group);
     }
 
     /**
@@ -69,7 +75,15 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:45',
+        ]);
+
+        $group->update($validatedData);
+
+        return redirect()
+            ->route('groups.show', $group)
+            ->with('status', 'Группа отредактирована');
     }
 
     /**

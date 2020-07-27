@@ -13,7 +13,7 @@ class Group extends Model
     /**
      * Get the students for the group.
      */
-    public function articles()
+    public function students()
     {
         return $this->hasMany('App\User');
     }
