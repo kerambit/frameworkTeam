@@ -13,6 +13,14 @@
     <h2>{{ $group->name }}</h2>
     <h3>Количество учащихся: {{ count($group->students) }}</h3>
     <a class="btn btn-primary" href="{{ route('groups.edit', $group->id) }}">Редактировать группу</a>
+    <form action="{{ route('groups.destroy', $group->id) }}" method="POST">
+        @csrf
+        @method('DELETE')
+
+        <button type="submit" class="btn btn-danger">
+            <i class="fa fa-trash"></i> Удалить группу
+        </button>
+    </form>
 
     <table class="table table-striped">
         <thead>

@@ -2,7 +2,15 @@
 @section('title', 'Список групп')
 
 @section('content')
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
     {{ $groups->links() }}
+
+    <a class="btn btn-primary" href="{{ route('groups.create') }}">Создать новую группу</a>
 
     @foreach($groups as $group)
         <h2><a href="{{ route('groups.show', $group->id) }}">{{ $group->name }}</a></h2>

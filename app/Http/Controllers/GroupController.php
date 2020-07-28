@@ -28,7 +28,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('group.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:45|unique:App\Group,name',
+        ]);
+
+        Group::create($validatedData);
+
+        return redirect()
+            ->route('groups.index')
+            ->with('status', 'Группа создана');
     }
 
     /**
@@ -94,6 +102,10 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return redirect()
+            ->route('groups.index')
+            ->with('status', 'Группа удалена');
     }
 }
