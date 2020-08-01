@@ -11,4 +11,14 @@ class Marks extends Model
       'student_id',
       'mark'
     ];
+
+    public function student()
+    {
+        return $this->belongsTo('App\User', 'student_id', 'id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo('App\Subjects', 'subject_id', 'id');
+    }
 }

@@ -11,10 +11,11 @@ class Subjects extends Model
     ];
 
     /**
-     * Get the subjects for student.
+     * Get the subject for student.
      */
     public function marks()
     {
-        return $this->belongsToMany('App\Marks', 'marks', 'subject_id', 'student_id');
+//        return $this->belongsToMany('App\User', 'marks', 'subject_id', 'student_id');
+        return $this->hasMany('App\Marks', 'subject_id', 'id');
     }
 }
