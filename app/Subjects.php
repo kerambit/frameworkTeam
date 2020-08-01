@@ -15,7 +15,6 @@ class Subjects extends Model
      */
     public function marks()
     {
-//        return $this->belongsToMany('App\User', 'marks', 'subject_id', 'student_id');
         return $this->hasMany('App\Marks', 'subject_id', 'id');
     }
 }

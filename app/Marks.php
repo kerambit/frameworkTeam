@@ -12,11 +12,17 @@ class Marks extends Model
       'mark'
     ];
 
+    /**
+     * Get the marks for student.
+     */
     public function student()
     {
         return $this->belongsTo('App\User', 'student_id', 'id');
     }
 
+    /**
+     * Get the subject for student.
+     */
     public function subject()
     {
         return $this->belongsTo('App\Subjects', 'subject_id', 'id');
