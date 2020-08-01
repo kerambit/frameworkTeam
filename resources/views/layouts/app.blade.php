@@ -43,7 +43,7 @@
                             <a class="nav-link" href="{{ route('subjects.index') }}">Список предметов</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('marks.index') }}">Список оценок</a>
+                            <a class="nav-link" href="{{ route('marks.index') }}">Журнал оценок</a>
                         </li>
                     </ul>
 
