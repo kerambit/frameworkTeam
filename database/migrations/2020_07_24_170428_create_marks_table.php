@@ -14,6 +14,7 @@ class CreateMarksTable extends Migration
     public function up()
     {
         Schema::create('marks', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('subject_id')
                 ->constrained('subjects')
                 ->onDelete('cascade');

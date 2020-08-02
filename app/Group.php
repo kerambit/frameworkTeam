@@ -17,4 +17,12 @@ class Group extends Model
     {
         return $this->hasMany('App\User');
     }
+
+    /**
+     * Get the marks for the group.
+     */
+    public function marks()
+    {
+        return $this->hasMany('App\Marks', 'group_id', 'id');
+    }
 }
