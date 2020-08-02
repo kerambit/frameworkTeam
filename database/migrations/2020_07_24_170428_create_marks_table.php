@@ -20,6 +20,9 @@ class CreateMarksTable extends Migration
             $table->foreignId('student_id')
                 ->constrained('users')
                 ->onDelete('cascade');
+            $table->foreignId('group_id')
+                ->constrained('users')
+                ->onDelete('cascade');
             $table->integer('mark');
             $table->unique(['subject_id', 'student_id']);
             $table->timestamps();

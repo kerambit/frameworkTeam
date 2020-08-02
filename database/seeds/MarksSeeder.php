@@ -20,6 +20,7 @@ class MarksSeeder extends Seeder
                 \App\Marks::create([
                     'subject_id' => $subject->id,
                     'student_id' => $student->id,
+                    'group_id' => $student->group_id,
                     'mark' => rand(3, 5)
                 ]);
             }
