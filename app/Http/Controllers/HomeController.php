@@ -25,9 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $students = User::paginate(15);
-
-        $students->load('group', 'marks');
+        $students = User::query()
+            ->with('group', 'marks')
+            ->when(request('last_name'), function ($q, $lastName){
+                return $q->where('last_name', 'like', "%{$lastName}%");
+            })
+            ->when(request('first_name'), function ($q, $firstName){
+                return $q->where('first_name', 'like', "%{$firstName}%");
+            })
+            ->when(request('middle_name'), function ($q, $middleName){
+                return $q->where('middle_name', 'like', "%{$middleName}%");
+            })
+            ->when(request('birth_date'), function ($q, $birthDate) {
+                return $q->orderBy('birth_date', $birthDate);
+            })
+            ->paginate(20);
 
         return view('student.index')->with('students', $students);
     }

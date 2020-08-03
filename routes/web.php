@@ -23,5 +23,3 @@ Route::resource('groups', 'GroupController');
 Route::resource('subjects', 'SubjectsController');
 Route::resource('users', 'HomeController');
 Route::resource('marks', 'MarksController');
-
-//Route::get('/home', 'HomeController@index')->name('home');

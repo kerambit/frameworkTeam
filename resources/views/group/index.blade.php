@@ -7,6 +7,13 @@
             {{ session('status') }}
         </div>
     @endif
+    <form action="{{ route('groups.index') }}" class="form-group">
+        <div class="form-group">
+            <label for="filterGroupName" class="form-control">Фильтрация по названию группы</label>
+            <input type="text" id="filterGroupName" name="name" value="{{ request()->name ?? '' }}" class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit">Фильтровать</button>
+    </form>
 
     {{ $groups->links() }}
 

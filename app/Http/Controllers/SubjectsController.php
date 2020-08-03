@@ -14,7 +14,11 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        $subjects = Subjects::all();
+        $subjects = Subjects::query()
+            ->when(request('name'), function ($q, $name){
+                return $q->where('name', 'like', "%{$name}%");
+            })
+            ->get();
 
         return view('subjects.index')->with('subjects', $subjects);
     }

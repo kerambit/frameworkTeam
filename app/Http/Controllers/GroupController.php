@@ -14,9 +14,12 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::paginate(3);
-
-        $groups->load('students');
+        $groups = Group::query()
+            ->with('students')
+            ->when(request('name'), function ($q, $name){
+                return $q->where('name', 'like', "%{$name}%");
+            })
+            ->paginate(3);
 
         return view('group.index')->with('groups', $groups);
     }

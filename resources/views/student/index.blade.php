@@ -7,6 +7,36 @@
             {{ session('status') }}
         </div>
     @endif
+    <form action="{{ route('users.index') }}" class="form-group">
+        <div class="form-group">
+            <label for="filterLastName" class="form-control">Фильтр по фамилии</label>
+            <input type="text" id="filterLastName" name="last_name" value="{{ request()->last_name ?? '' }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="filterFirstName" class="form-control">Фильтр по имени</label>
+            <input type="text" id="filterFirstName" name="first_name" value="{{ request()->first_name ?? '' }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="filterMiddleName" class="form-control">Фильтр по отчеству</label>
+            <input type="text" id="filterMiddleName" name="middle_name" value="{{ request()->middle_name ?? '' }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="inputBirthDate">Фильтр по дате рождения</label>
+            <select id="inputBirthDate" class="form-control form-control-sm" name="birth_date">
+                @if (request()->birth_date == 'desc')
+                    <option value="desc" selected>По возрастанию</option>
+                    <option value="asc">По убыванию</option>
+                @else
+                    <option value="desc">По возрастанию</option>
+                    <option value="asc" selected>По убыванию</option>
+                @endif
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Фильтровать</button>
+    </form>
 
     {{ $students->links() }}
 
