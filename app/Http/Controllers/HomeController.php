@@ -73,6 +73,7 @@ class HomeController extends Controller
             'last_name' => 'required|min:3|max:45',
             'first_name' => 'required|min:3|max:45',
             'middle_name' => 'required|min:3|max:45',
+            'birth_date' => 'required|min:10',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'group_id' => 'required|numeric',
         ]);

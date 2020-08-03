@@ -70,6 +70,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="inputBirthDate"><h4>Дата рождения</h4></label>
+                                    <input disabled type="text" class="form-control" name="birth_date" id="inputBirthDate" placeholder="Введите дату рождения" value="{{ $student->birth_date }}">
+                                </div>
+                            </div>
+
             </div><!--/tab-content-->
             @else
                 <h2>Настройки профиля недоступны для не вашего аккаунта!</h2>

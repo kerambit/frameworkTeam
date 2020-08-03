@@ -97,6 +97,15 @@
                                         <button class="btn btn-lg btn-success" type="submit">Сохранить изменения</button>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="inputBirthDate"><h4>Дата рождения</h4></label>
+                                        <input type="text" class="form-control" name="birth_date" id="inputBirthDate" placeholder="Введите дату рождения" value="{{ $student->birth_date }}">
+                                    </div>
+                                </div>
+
                             </form>
                             <form action="{{ route('users.destroy', $student->id) }}" method="POST">
                                 @csrf
