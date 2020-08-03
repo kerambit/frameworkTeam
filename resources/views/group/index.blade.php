@@ -18,7 +18,7 @@
             <thead>
             <tr>
                 <th scope="col">Номер</th>
-                <th scope="col">Имя</th>
+                <th scope="col">ФИО</th>
                 <th scope="col">Дата рождения</th>
                 <th scope="col">Email</th>
             </tr>
@@ -27,7 +27,7 @@
             @foreach ($group->students as $student)
                 <tr>
                     <td>{{ $student->id }}</td>
-                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->full_name }}</td>
                     <td>{{ $student->birth_date }}</td>
                     <td>{{ $student->email }}</td>
                 </tr>

@@ -20,7 +20,9 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'first_name' => $faker->firstNameMale,
+        'last_name' => $faker->lastName($gender = 'male'),
+        'middle_name' => $faker->middleNameMale,
         'birth_date' => $faker->dateTimeBetween($min = '01-01-1995', $max = '01-01-2000'),
         'group_id' => function () {
             return factory(Group::Class)->create()->id;

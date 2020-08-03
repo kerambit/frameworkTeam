@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('title')
-    Подробные данные о группе {{ $group->name }}
-@endsection
+@section('title', 'Список студентов')
 
 @section('content')
     @if (session('status'))
@@ -10,36 +8,33 @@
         </div>
     @endif
 
-    <h2>{{ $group->name }}</h2>
-    <h3>Количество учащихся: {{ count($group->students) }}</h3>
-    <a class="btn btn-primary" href="{{ route('groups.edit', $group->id) }}">Редактировать группу</a>
-    <form action="{{ route('groups.destroy', $group->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
+    {{ $students->links() }}
 
-        <button type="submit" class="btn btn-danger">
-            <i class="fa fa-trash"></i> Удалить группу
-        </button>
-    </form>
-
+    <h2>Список всех студентов</h2>
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">Номер</th>
             <th scope="col">ФИО</th>
             <th scope="col">Дата рождения</th>
+            <th scope="col">Группа</th>
+            <th scope="col">Средний балл по всем предметам</th>
             <th scope="col">Email</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($group->students as $student)
+        @foreach ($students as $student)
             <tr>
                 <td>{{ $student->id }}</td>
-                <td>{{ $student->full_name }}</td>
+                <td><a href="{{ route('users.show', $student->id) }}">{{ $student->full_name }}</a></td>
                 <td>{{ $student->birth_date }}</td>
+                <td>{{ $student->group->name }}</td>
+                <td>{{ number_format($student->marks->avg('mark'), 2, ',', '') }}</td>
                 <td>{{ $student->email }}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
+
+    {{ $students->links() }}
 @endsection

@@ -20,7 +20,7 @@
             <label for="inputStudentName">Выберите Студента</label>
             <select id="inputStudentName" class="form-control form-control-sm" name="student_id">
                 @foreach($students as $student)
-                    <option value="{{ $student->id }}" data-group="{{ $student->group->id }}">{{ $student->name }}</option>
+                    <option value="{{ $student->id }}" data-group="{{ $student->group->id }}">{{ $student->full_name }}</option>
                 @endforeach
             </select>
             <input type="hidden" id="inputGroupName" value="" name="group_id"/>

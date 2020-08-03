@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Регистрация студента')
 
 @section('content')
 <div class="container">
@@ -12,16 +13,53 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="firstName" type="text" class="form-control" name="first_name" required autofocus>
+                            </div>
+                        </div>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-md-4 col-form-label text-md-right">Last Name</label>
+
+                            <div class="col-md-6">
+                                <input id="lastName" type="text" class="form-control" name="last_name" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="middleName" class="col-md-4 col-form-label text-md-right">Middle Name</label>
+
+                            <div class="col-md-6">
+                                <input id="middleName" type="text" class="form-control" name="middle_name" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="birth_date" class="col-md-4 col-form-label text-md-right">Birth date</label>
+
+                            <div class="col-md-6">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input id="birth_date" type="text" class="form-control @error('name') is-invalid @enderror" name="birth_date" required autofocus>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
-                                @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputGroupName" class="col-md-4 col-form-label text-md-right">Group</label>
+
+                            <div class="col-md-6">
+                                <div class='input-group'>
+                                    <select id="inputGroupName" class="form-control form-control-sm" name="group_id">
+                                        @foreach($groups as $group)
+                                            <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
 

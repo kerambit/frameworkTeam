@@ -15,7 +15,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">Имя студента</th>
+                <th scope="col">ФИО</th>
                 <th scope="col">Группа</th>
                 @foreach($subjects as $subject)
                     <th scope="col">{{ $subject->name }}</th>
@@ -25,14 +25,14 @@
             </thead>
             <tbody>
             @foreach ($students as $student)
-                <tr>
-                    @if ($marks->where('student_id', '=', $student->id)->avg('mark') == 5)
-                        <td style="border: 1px solid green">{{ $student->name }}</td>
-                    @elseif ($marks->where('student_id', '=', $student->id)->where('mark', '=', 3)->isEmpty())
-                        <td style="border: 1px solid yellow">{{ $student->name }}</td>
-                    @else
-                        <td style="border: 1px solid red">{{ $student->name }}</td>
-                    @endif
+                @if ($marks->where('student_id', '=', $student->id)->avg('mark') == 5)
+                    <tr style="background-color: green">
+                @elseif ($marks->where('student_id', '=', $student->id)->where('mark', '=', 3)->isEmpty())
+                    <tr style="background-color: yellow">
+                @else
+                    <tr style="background-color: red">
+                @endif
+                    <td>{{ $student->full_name }}</td>
                     <td>{{ $student->group->name }}</td>
                     @foreach($student->marks as $mark)
                         <td><a href="{{ route('marks.show', $mark->id) }}">{{ $mark->mark }}<a></td>

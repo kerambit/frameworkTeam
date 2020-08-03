@@ -5,5 +5,5 @@
     @include('includes.errors')
 
     <h2>Создание предмета</h2>
-    @include('includes.forms.group', ['route' => route('subjects.store')])
+    @include('includes.forms.subject', ['route' => route('subjects.store')])
 @endsection

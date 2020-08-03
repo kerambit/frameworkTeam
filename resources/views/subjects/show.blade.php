@@ -28,7 +28,7 @@
         <thead>
         <tr>
             <th scope="col">Номер</th>
-            <th scope="col">Имя</th>
+            <th scope="col">ФИО</th>
             <th scope="col">Оценка</th>
             <th scope="col">Email</th>
         </tr>
@@ -37,7 +37,7 @@
         @foreach ($paginator as $student)
             <tr>
                 <td>{{ $student->student->id }}</td>
-                <td>{{ $student->student->name }}</td>
+                <td>{{ $student->student->full_name }}</td>
                 <td>{{ $student->mark }}</td>
                 <td>{{ $student->student->email }}</td>
             </tr>

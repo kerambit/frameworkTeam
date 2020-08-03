@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'birth_date', 'group_id', 'email', 'password',
+        'first_name', 'last_name', 'middle_name', 'birth_date', 'group_id', 'email', 'password',
     ];
 
     /**
@@ -51,5 +51,15 @@ class User extends Authenticatable
     public function marks()
     {
         return $this->hasMany('App\Marks', 'student_id', 'id');
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->last_name} {$this->first_name} {$this->middle_name}";
     }
 }
