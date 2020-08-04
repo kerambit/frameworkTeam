@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
+            $table->string('avatar')->default('default_avatar.png');
             $table->dateTime('birth_date')->format('d-m-Y');
             $table->foreignId('group_id')
                 ->constrained('groups')

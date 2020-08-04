@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,8 @@ class HomeController extends Controller
     {
         $this->middleware('password.confirm')->only('edit');
     }
+
+    private const defaultAvatar = 'default_avatar.png';
 
     /**
      * Show the application dashboard.
@@ -85,10 +88,29 @@ class HomeController extends Controller
             'last_name' => 'required|min:3|max:45',
             'first_name' => 'required|min:3|max:45',
             'middle_name' => 'required|min:3|max:45',
+            'avatar' => 'mimes:jpeg,jpg,png|',
             'birth_date' => 'required|min:10',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'group_id' => 'required|numeric',
         ]);
+
+        if ($request->hasFile('avatar')){
+            if ($user->avatar != self::defaultAvatar) {
+                Storage::disk('avatars')->delete($user->avatar);
+            }
+
+            $now = now();
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $newAvatar = "{$user->id}_{$user->group_id}_{$now}.{$extension}";
+
+            Storage::putFileAs(
+                'avatars',
+                $request->file('avatar'),
+                $newAvatar
+            );
+
+            $validatedData['avatar'] = $newAvatar;
+        }
 
         $user->update($validatedData);
 
@@ -105,6 +127,10 @@ class HomeController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->avatar != self::defaultAvatar) {
+            Storage::disk('avatars')->delete($user->avatar);
+        }
+
         $user->delete();
 
         return redirect()

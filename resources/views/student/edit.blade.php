@@ -19,11 +19,7 @@
 
 
                 <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                    @if (!Auth::guest() and Auth::user()->id == $student->id)
-                        <h6>Выберите фотографию профиля</h6>
-                        {{--                        <input type="file" class="text-center center-block file-upload">--}}
-                    @endif
+                    <img src="{{ asset('avatars') . '/' . $student->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar">
                 </div></hr><br>
 
                 <ul class="list-group">
@@ -40,7 +36,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="home">
                             <hr>
-                            <form class="form" action="{{ route('users.update', $student->id) }}" method="post" id="registrationForm">
+                            <form class="form" action="{{ route('users.update', $student->id) }}" method="post" id="registrationForm" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
@@ -92,17 +88,25 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <br>
-                                        <button class="btn btn-lg btn-success" type="submit">Сохранить изменения</button>
+
+                                    <div class="col-xs-6">
+                                        <label for="inputBirthDate"><h4>Дата рождения</h4></label>
+                                        <input type="text" class="form-control" name="birth_date" id="inputBirthDate" placeholder="Введите дату рождения" value="{{ $student->birth_date }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
 
                                     <div class="col-xs-6">
-                                        <label for="inputBirthDate"><h4>Дата рождения</h4></label>
-                                        <input type="text" class="form-control" name="birth_date" id="inputBirthDate" placeholder="Введите дату рождения" value="{{ $student->birth_date }}">
+                                        <label for="inputAvatar"><h4>Аватар профиля</h4></label>
+                                        <input type="file" name="avatar" accept="image/png, image/jpeg, image/jpg" id="inputAvatar" class="text-center center-block file-upload">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <br>
+                                        <button class="btn btn-lg btn-success" type="submit">Сохранить изменения</button>
                                     </div>
                                 </div>
 

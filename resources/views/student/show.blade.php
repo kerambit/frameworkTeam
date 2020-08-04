@@ -19,7 +19,7 @@
 
 
                 <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <img src="{{ asset('avatars') . '/' . $student->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar">
                 </div></hr><br>
 
                 <ul class="list-group">
